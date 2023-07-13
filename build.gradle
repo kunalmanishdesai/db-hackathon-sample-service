@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.1'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id "com.google.cloud.tools.jib" version "3.3.2"
+}
+
+group = 'com.db.hackathon'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	implementation 'com.google.cloud:google-cloud-logging-logback:0.130.17-alpha'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+jib {
+	var tag = "latest"
+	from {
+		image = "gcr.io/distroless/java:11"
+	}
+	to {
+		image = "asia-south1-docker.pkg.dev/hack-team-smartconnect/smartconnect-docker-registry/sample-service"
+		tags = [tag,version]
+	}
+}

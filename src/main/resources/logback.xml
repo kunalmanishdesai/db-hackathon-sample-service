@@ -1,0 +1,18 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <appender name="gcpLoggingAppender" class="com.google.cloud.logging.logback.LoggingAppender">
+        <redirectToStdout>true</redirectToStdout>
+        <logDestinationProjectId>hackathon-befc3</logDestinationProjectId>
+    </appender>
+
+    <root level="INFO">
+        <springProfile name="gcp">
+            <appender-ref ref="gcpLoggingAppender"/>
+        </springProfile>
+        <springProfile name="local">
+            <appender-ref ref="CONSOLE"/>
+        </springProfile>
+    </root>
+</configuration>

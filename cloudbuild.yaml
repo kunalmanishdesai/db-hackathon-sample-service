@@ -1,0 +1,13 @@
+steps:
+  # Build the container image
+  - # Uses the Cloud Builders Gradle image.
+    name: gcr.io/cloud-builders/gradle
+    args:
+      - jib
+
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', 'sample-service', '--image', 'asia-south1-docker.pkg.dev/hack-team-smartconnect/smartconnect-docker-registry/sample-service', '--region', 'REGION']
+images:
+  - asia-south1-docker.pkg.dev/hack-team-smartconnect/smartconnect-docker-registry/sample-service
