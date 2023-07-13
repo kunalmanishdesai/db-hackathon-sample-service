@@ -32,7 +32,7 @@ tasks.named('test') {
 jib {
 	var tag = "latest"
 	from {
-		image = "gcr.io/distroless/java:11"
+		image = "gcr.io/distroless/java17-debian11"
 	}
 	to {
 		image = "asia-south1-docker.pkg.dev/hack-team-smartconnect/smartconnect-docker-registry/sample-service"
