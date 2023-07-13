@@ -8,6 +8,6 @@ steps:
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'sample-service', '--image', 'asia-south1-docker.pkg.dev/hack-team-smartconnect/smartconnect-docker-registry/sample-service', '--region', 'REGION']
+    args: ['run', 'deploy', 'sample-service', '--image', 'asia-south1-docker.pkg.dev/hack-team-smartconnect/smartconnect-docker-registry/sample-service', '--region', 'asia-south1']
 images:
   - asia-south1-docker.pkg.dev/hack-team-smartconnect/smartconnect-docker-registry/sample-service
